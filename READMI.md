@@ -4,8 +4,8 @@
 
 ### 👨‍🎓 Integrantes
 
-Para conhecer mais sobre os integrantes, experimente clicar em seus nomes ou fotos e visite seus perfis no LinkedIn.
- 
+To learn more about the team members, try clicking on their names or photos and visit their LinkedIn profiles
+
 <div align="center">
   <table>
     <tr>
@@ -15,3 +15,12 @@ Para conhecer mais sobre os integrantes, experimente clicar em seus nomes ou fot
        </tr>
   </table>
 </div>
+
+## Summary
+
+&nbsp;&nbsp;&nbsp;&nbsp;O Sumário deste projeto oferece uma visão geral abrangente do projeto. Ao clicar em uma seção específica listada abaixo, você será rapidamente direcionado para ela, simplificando a navegação e a busca por informações precisas.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Explore as seções abaixo para acessar diretamente as informações desejadas
+
+- [Introdução ao projeto](#Introdução_Projeto)
+- 

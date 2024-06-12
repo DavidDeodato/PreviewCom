@@ -63,7 +63,7 @@ _For Consumers and Businesses_
 
 - Supply Chain Optimization: Companies involved in the supply chain can optimize their operations by anticipating price changes, ensuring they buy raw materials at the most cost-effective times.
 
-_For Investors and Traders_
+*For Investors and Traders*
 
 
 - Market Analysis: Investors and commodity traders can use the application to gain a competitive edge in the market. Accurate predictions allow for better-informed investment decisions.

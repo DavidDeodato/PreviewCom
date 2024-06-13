@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commodity Price Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e0ffe0);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .header {
+            background-color: #40694d; /* Dark green */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header img {
+            height: 100px;
+            margin-right: 20px;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 5px solid #daa520; /* Goldenrod */
+            border-radius: 10px; /* Rounded corners */
+        }
+        .title {
+            color: #004d00; /* Dark green */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .parameters, .result {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .parameter {
+            flex: 1 1 30%;
+            min-width: 200px;
+            margin: 10px;
+            position: relative; /* For icon positioning */
+        }
+        .parameter label {
+            display: block;
+            margin-bottom: 5px;
+            color: #004d00; /* Dark green */
+        }
+        .parameter input, .parameter select {
+            width: calc(100% - 30px);
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding-left: 30px; /* Space for the icon */
+        }
+        .parameter .icon {
+            position: absolute;
+            top: 65%; /* Adjusted to align icons correctly */
+            left: 10px;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #004d00; /* Dark green */
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            width: 100%; /* Full width to align button */
+            display: flex;
+            justify-content: space-between; /* Space between button and loading */
+            align-items: center;
+        }
+        .loading {
+            display: none;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #004d00; /* Dark green */
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        .indicator {
+            display: none;
+            font-size: 40px;
+        }
+        .indicator.up {
+            color: #32cd32; /* Lime green */
+        }
+        .indicator.down {
+            color: #b22222; /* Firebrick red */
+        }
+        button {
+            background-color: #004d00; /* Dark green */
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #006400; /* Green */
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .parameter {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <img src="/assets/LogoPreviewCom.png" alt="Logo">
+        <h1>PreviewCom</h1>
+    </div>
+    <div class="container">
+        <div class="title">
+            <h2>Commodity Price Predictor</h2>
+        </div>
+        <div class="parameters">
+            <div class="parameter">
+                <label for="price">Current Price</label>
+                <i class="fas fa-dollar-sign icon"></i>
+                <input type="number" step="0.01" id="price" name="price" placeholder="$">
+            </div>
+            <div class="parameter">
+                <label for="season">Season</label>
+                <i class="fas fa-cloud-sun icon"></i>
+                <select id="season" name="season">
+                    <option value="spring">Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="autumn">Autumn</option>
+                    <option value="winter">Winter</option>
+                </select>
+            </div>
+            <div class="parameter">
+                <label for="humidity">Humidity</label>
+                <i class="fas fa-tint icon"></i>
+                <select id="humidity" name="humidity">
+                    <option value="10-20">10-20%</option>
+                    <option value="20-30">20-30%</option>
+                    <option value="30-40">30-40%</option>
+                    <option value="40-50">40-50%</option>
+                    <option value="50-60">50-60%</option>
+                    <option value="60-70">60-70%</option>
+                    <option value="70-80">70-80%</option>
+                    <option value="80-90">80-90%</option>
+                    <option value="90-100">90-100%</option>
+                </select>
+            </div>
+            <div class="parameter">
+                <label for="temperature">Temperature</label>
+                <i class="fas fa-thermometer-half icon"></i>
+                <input type="number" step="0.1" id="temperature" name="temperature" placeholder="°C">
+            </div>
+            <div class="parameter">
+                <label for="location">Location</label>
+                <i class="fas fa-map-marker-alt icon"></i>
+                <select id="location" name="location">
+                    <option value="north-america">North America</option>
+                    <option value="south-america">South America</option>
+                    <option value="europe">Europe</option>
+                    <option value="asia">Asia</option>
+                    <option value="africa">Africa</option>
+                    <option value="australia">Australia</option>
+                    <option value="antarctica">Antarctica</option>
+                </select>
+            </div>
+            <div class="parameter">
+                <label for="commodity">Type of Commodity</label>
+                <i class="fas fa-cube icon"></i>
+                <select id="commodity" name="commodity">
+                    <option value="coffee">Coffee</option>
+                </select>
+            </div>
+        </div>
+        <div class="result">
+            <button onclick="analyzeData()">Analyze</button>
+            <div class="loading">Analyzing...</div>
+            <div class="indicator up">↑</div>
+            <div class="indicator down">↓</div>
+        </div>
+    </div>
+
+    <script>
+        function analyzeData() {
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.indicator.up').style.display = 'none';
+            document.querySelector('.indicator.down').style.display = 'none';
+
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+
+                // Randomly simulate increase or decrease for demonstration
+                let increase = Math.random() > 0.5;
+                if (increase) {
+                    document.querySelector('.indicator.up').style.display = 'inline';
+                } else {
+                    document.querySelector('.indicator.down').style.display = 'inline';
+                }
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

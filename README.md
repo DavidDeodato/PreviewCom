@@ -40,7 +40,8 @@ Our goal is to create a sophisticated AI-driven application designed to analyze 
 - Historical Prices: Past price data to identify trends and patterns over time.
 - Commodity Type: Specific characteristics of the commodity in question.
 - Humidity Levels: Impact of moisture content on commodity storage and pricing.
-- By integrating these diverse data sources, our AI will learn from historical trends and use this knowledge to predict future price movements with increased accuracy.
+
+ By integrating these diverse data sources, our AI will learn from historical trends and use this knowledge to predict future price movements with increased accuracy.
 
 **Benefits**
 

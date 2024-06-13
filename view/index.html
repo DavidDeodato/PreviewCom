@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commodity Price Predictor</title>
+    <link rel="stylesheet" href="/view/style.css">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <img src="/assets/LogoPreviewCom.png" alt="Logo">
+        <h1>PreviewCom</h1>
+    </div>
+    <div class="container">
+        <div class="title">
+            <h2>Commodity Price Predictor</h2>
+        </div>
+        <div class="tab-container">
+            <div class="tab active" data-tab="predictor">Predictor</div>
+            <div class="tab" data-tab="deposit">Deposit</div>
+            <div class="tab" data-tab="withdraw">Withdraw</div>
+        </div>
+        <div id="predictor" class="tab-content active">
+            <div class="parameters">
+                <div class="parameter">
+                    <label for="price">Current Price</label>
+                    <i class="fas fa-dollar-sign icon"></i>
+                    <input type="number" step="0.01" id="price" name="price" placeholder="$">
+                </div>
+                <div class="parameter">
+                    <label for="season">Season</label>
+                    <i class="fas fa-cloud-sun icon"></i>
+                    <select id="season" name="season">
+                        <option value="spring">Spring</option>
+                        <option value="summer">Summer</option>
+                        <option value="autumn">Autumn</option>
+                        <option value="winter">Winter</option>
+                    </select>
+                </div>
+                <div class="parameter">
+                    <label for="humidity">Humidity</label>
+                    <i class="fas fa-tint icon"></i>
+                    <select id="humidity" name="humidity">
+                        <option value="10-20">10-20%</option>
+                        <option value="20-30">20-30%</option>
+                        <option value="30-40">30-40%</option>
+                        <option value="40-50">40-50%</option>
+                        <option value="50-60">50-60%</option>
+                        <option value="60-70">60-70%</option>
+                        <option value="70-80">70-80%</option>
+                        <option value="80-90">80-90%</option>
+                        <option value="90-100">90-100%</option>
+                    </select>
+                </div>
+                <div class="parameter">
+                    <label for="temperature">Temperature</label>
+                    <i class="fas fa-thermometer-half icon"></i>
+                    <input type="number" step="0.1" id="temperature" name="temperature" placeholder="°C">
+                </div>
+                <div class="parameter">
+                    <label for="location">Location</label>
+                    <i class="fas fa-map-marker-alt icon"></i>
+                    <select id="location" name="location">
+                        <option value="north-america">North America</option>
+                        <option value="south-america">South America</option>
+                        <option value="europe">Europe</option>
+                        <option value="asia">Asia</option>
+                        <option value="africa">Africa</option>
+                        <option value="australia">Australia</option>
+                        <option value="antarctica">Antarctica</option>
+                    </select>
+                </div>
+                <div class="parameter">
+                    <label for="commodity">Type of Commodity</label>
+                    <i class="fas fa-cube icon"></i>
+                    <select id="commodity" name="commodity">
+                        <option value="coffee">Coffee</option>
+                    </select>
+                </div>
+            </div>
+            <div class="result">
+                <button onclick="analyzeData()">Analyze</button>
+                <div class="loading">Analyzing...</div>
+                <div class="indicator up">↑</div>
+                <div class="indicator down">↓</div>
+            </div>
+        </div>
+        <div id="deposit" class="tab-content">
+            <div class="currency-section">
+                <h2><i class="fas fa-wallet"></i> Deposit</h2>
+                <div class="parameter">
+                    <label for="currency">Choose Currency</label>
+                    <i class="fas fa-coins icon"></i>
+                    <select id="currency" name="currency">
+                        <option value="etherium">Etherium</option>
+                        <option value="rc20">RC20</option>
+                        <option value="rc72">RC72</option>
+                    </select>
+                </div>
+                <div class="parameter">
+                    <label for="amount">Amount</label>
+                    <i class="fas fa-dollar-sign icon"></i>
+                    <input type="number" step="0.0001" id="amount" name="amount" placeholder="$">
+                </div>
+                <button onclick="depositFunds()"><i class="fas fa-paper-plane"></i> Deposit</button>
+            </div>
+        </div>
+        <div id="withdraw" class="tab-content">
+            <div class="currency-section">
+                <h2><i class="fas fa-money-bill-wave"></i> Withdraw</h2>
+                <div class="parameter">
+                    <label for="withdraw-currency">Choose Currency</label>
+                    <i class="fas fa-coins icon"></i>
+                    <select id="withdraw-currency" name="withdraw-currency">
+                        <option value="etherium">Etherium</option>
+                        <option value="rc20">RC20</option>
+                        <option value="rc72">RC72</option>
+                    </select>
+                </div>
+                <div class="parameter">
+                    <label for="withdraw-amount">Amount</label>
+                    <i class="fas fa-dollar-sign icon"></i>
+                    <input type="number" step="0.0001" id="withdraw-amount" name="withdraw-amount" placeholder="$">
+                </div>
+                <button onclick="withdrawFunds()"><i class="fas fa-hand-holding-usd"></i> Withdraw</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+
+        function analyzeData() {
+            document.querySelector('.loading').style.display = 'block';
+            document.querySelector('.indicator.up').style.display = 'none';
+            document.querySelector('.indicator.down').style.display = 'none';
+
+            setTimeout(() => {
+                document.querySelector('.loading').style.display = 'none';
+
+                // Randomly simulate increase or decrease for demonstration
+                let increase = Math.random() > 0.5;
+                if (increase) {
+                    document.querySelector('.indicator.up').style.display = 'inline';
+                } else {
+                    document.querySelector('.indicator.down').style.display = 'inline';
+                }
+            }, 2000);
+        }
+
+        function depositFunds() {
+            const currency = document.getElementById('currency').value;
+            const amount = document.getElementById('amount').value;
+
+            if (amount > 0) {
+                alert(`You have successfully deposited ${amount} ${currency}.`);
+            } else {
+                alert('Please enter a valid amount to deposit.');
+            }
+        }
+
+        function withdrawFunds() {
+            const currency = document.getElementById('withdraw-currency').value;
+            const amount = document.getElementById('withdraw-amount').value;
+
+            if (amount > 0) {
+                alert(`You have successfully withdrawn ${amount} ${currency}.`);
+            } else {
+                alert('Please enter a valid amount to withdraw.');
+            }
+        }
+    </script>
+</body>
+</html>

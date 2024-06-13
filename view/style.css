@@ -7,7 +7,7 @@
             color: #333;
         }
         .header {
-            background-color: #004d00; /* Dark green */
+            background-color: #004d00; 
             color: #fff;
             padding: 20px;
             text-align: center;
@@ -26,11 +26,11 @@
             padding: 20px;
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border: 5px solid #daa520; /* Goldenrod */
-            border-radius: 10px; /* Rounded corners */
+            border: 5px solid #daa520; 
+            border-radius: 10px; 
         }
         .title {
-            color: #004d00; /* Dark green */
+            color: #004d00; 
             text-align: center;
             margin-bottom: 20px;
         }
@@ -66,12 +66,12 @@
             flex: 1 1 30%;
             min-width: 200px;
             margin: 10px;
-            position: relative; /* For icon positioning */
+            position: relative;
         }
         .parameter label {
             display: block;
             margin-bottom: 5px;
-            color: #004d00; /* Dark green */
+            color: #004d00; 
         }
         .parameter input, .parameter select {
             width: calc(100% - 30px);
@@ -79,22 +79,22 @@
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
-            padding-left: 30px; /* Space for the icon */
+            padding-left: 30px; 
         }
         .parameter .icon {
             position: absolute;
-            top: 65%; /* Adjusted to align icons correctly */
+            top: 65%; 
             left: 16px;
             transform: translateY(-50%);
             font-size: 16px;
-            color: #004d00; /* Dark green */
+            color: #004d00; 
         }
         .result {
             text-align: center;
             margin-top: 20px;
-            width: 100%; /* Full width to align button */
+            width: 100%; 
             display: flex;
-            justify-content: space-between; /* Space between button and loading */
+            justify-content: space-between;
             align-items: center;
         }
         .loading {
@@ -107,7 +107,7 @@
             display: inline-block;
             width: 24px;
             height: 24px;
-            border: 3px solid #004d00; /* Dark green */
+            border: 3px solid #004d00; 
             border-radius: 50%;
             border-top-color: transparent;
             animation: spin 1s linear infinite;
@@ -118,13 +118,13 @@
             font-size: 40px;
         }
         .indicator.up {
-            color: #32cd32; /* Lime green */
+            color: #32cd32; 
         }
         .indicator.down {
-            color: #b22222; /* Firebrick red */
+            color: #b22222; 
         }
         button {
-            background-color: #004d00; /* Dark green */
+            background-color: #004d00; 
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -134,7 +134,7 @@
             transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #006400; /* Green */
+            background-color: #006400; 
         }
         @keyframes spin {
             from {
@@ -144,7 +144,7 @@
                 transform: rotate(360deg);
             }
         }
-        /* Responsive Design */
+       
         @media (max-width: 768px) {
             .parameter {
                 flex: 1 1 100%;
@@ -154,7 +154,7 @@
             text-align: center;
         }
         .currency-section h2 {
-            color: #004d00; /* Dark green */
+            color: #004d00; 
             margin-bottom: 20px;
         }
         .currency-section .parameter {
